@@ -54,7 +54,7 @@
               ;;
           esac
 
-          DATE="$(date -d "$1" 2>/dev/null)"
+          DATE="$(${pkgs.${system}.coreutils}/bin/date -d "$1" 2>/dev/null)"
           if [ -z "$DATE" ]; then
             echo "Error: Invalid date format." >&2
             exit 1
