@@ -1,0 +1,64 @@
+{
+  "nodes": {
+    "git-amend-commit-date-flake": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./pkgs/git-amend-commit-date",
+        "type": "path"
+      },
+      "original": {
+        "path": "./pkgs/git-amend-commit-date",
+        "type": "path"
+      },
+      "parent": []
+    },
+    "git-rebase-commit-date-flake": {
+      "inputs": {
+        "git-amend-commit-date-flake": [
+          "git-amend-commit-date-flake"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "path": "./pkgs/git-rebase-commit-date",
+        "type": "path"
+      },
+      "original": {
+        "path": "./pkgs/git-rebase-commit-date",
+        "type": "path"
+      },
+      "parent": []
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1759381078,
+        "narHash": "sha256-gTrEEp5gEspIcCOx9PD8kMaF1iEmfBcTbO0Jag2QhQs=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7df7ff7d8e00218376575f0acdcc5d66741351ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "git-amend-commit-date-flake": "git-amend-commit-date-flake",
+        "git-rebase-commit-date-flake": "git-rebase-commit-date-flake",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -1,0 +1,32 @@
+name: "Nix Flakes: Test"
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+# Sets permissions of the GITHUB_TOKEN
+permissions:
+  contents: "read"
+
+jobs:
+  test:
+    name: "Test"
+
+    runs-on: "ubuntu-latest"
+    
+    steps:
+      - name: "GitHub: Checkout Repository"
+        uses: "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683" # v4.2.2
+
+      - name: "GitHub: Setup Nix"
+        uses: "custom-workflows/setup-nix@d3dc49dd7bd37d10de81c938bebefad918e4d499" # latest
+        with:
+          install_url: "https://releases.nixos.org/nix/nix-2.29.0/install"
+          extra_nix_config: |
+              extra-experimental-features = nix-command flakes
+
+      - name: "Nix Flakes: Test"
+        shell: "bash"
+        run: |
+          ./.nix/ci/workflows/nix-flakes-test.sh

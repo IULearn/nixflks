@@ -1,0 +1,45 @@
+{
+    "name": "Ubuntu",
+    "image": "mcr.microsoft.com/devcontainers/base:jammy",
+    "features": {
+        "ghcr.io/devcontainers/features/nix:1": {
+            "version": "2.29.0",
+            "extraNixConfig": "extra-experimental-features = nix-command flakes"
+        }
+    },
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"github.vscode-github-actions",
+				"redhat.vscode-yaml",
+				"jnoortheen.nix-ide"
+			],
+			"settings": {
+				"editor.rulers": [120],
+				"editor.quickSuggestions": {
+					"strings": "on"
+				},
+				"files.autoSave": "afterDelay",
+				"nix.enableLanguageServer": true,
+				"nix.serverPath": "nixd",
+				"nix.serverSettings": {
+					"nixd": {
+						"formatting": {
+							"command": ["nixfmt"]
+						}
+					}
+				}
+			}
+		}
+	},
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=/home/vscode/.ssh,readonly,type=bind"
+    ],
+    "initializeCommand": {
+        "mkdir-ssh": "mkdir -p ${localEnv:HOME}${localEnv:USERPROFILE}/.ssh || true"
+    },
+    "onCreateCommand": "git add \"flake.nix\" && nix profile install",
+    "hostRequirements": {
+        "memory": "9gb"
+    }
+}
